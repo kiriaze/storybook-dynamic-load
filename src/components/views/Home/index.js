@@ -1,7 +1,10 @@
 import React, { Suspense } from 'react'
-import Loadable from 'react-loadable';
+import styled from 'styled-components'
+import Loadable from 'react-loadable'
 
-import Loader from '../../ui/Loader/Loader';
+import Loader from '../../ui/Loader/Loader'
+
+import LazyImage from '../../../utility/Lazy';
 
 const Header = Loadable({
   loader: () =>
@@ -76,6 +79,13 @@ const data = [
 ]
 // 
 
+const Grid = styled.div`
+  display: grid;
+  padding: 16px;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 1fr 1fr;
+`;
+
 const Home = () => {
   return (
     <div>
@@ -87,12 +97,29 @@ const Home = () => {
         <DataBind />
       </Suspense>
 
+      {/* 
+        test lazy loading stream of images vs wrapped in suspense?
+        note: consider this instead as a complete solution, images/media + components
+          https://github.com/twobin/react-lazyload
+      */}
+      <Grid>
+        {[...Array(50).keys()].map(i => (
+          <LazyImage
+            key={i}
+            src={`https://picsum.photos/1000/1000?random=${i}`}
+            alt={`Random image ${i}`}
+          />
+        ))}
+      </Grid>
+
       <Suspense>
         <TabGroup data={data} />
       </Suspense>
+      
       <Suspense>
         <Pagination data={data} />
       </Suspense>
+
     </div>
   )
 }
