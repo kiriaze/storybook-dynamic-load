@@ -4,20 +4,6 @@ import Loadable from 'react-loadable'
 
 import Loader from '../../ui/Loader/Loader'
 
-import LazyImage from '../../../utility/Lazy';
-
-const Header = Loadable({
-  loader: () =>
-    new Promise((resolve, reject) => {
-      setTimeout(() => resolve(import('../../header/Header')), 1000);
-    }),
-  loading: Loader,
-  render: (module, props) => {
-    const { Header } = module;
-    return <Header {...props} />;
-  },
-})
-
 const TabGroup = Loadable({
   loader: () =>
     new Promise((resolve, reject) => {
@@ -89,28 +75,10 @@ const Grid = styled.div`
 const Home = () => {
   return (
     <div>
-      <Suspense>
-        <Header onLogin={() => {}} onLogout={() => {}} onCreateAccount={() => {}} />
-      </Suspense>
 
       <Suspense>
         <DataBind />
       </Suspense>
-
-      {/* 
-        test lazy loading stream of images vs wrapped in suspense?
-        note: consider this instead as a complete solution, images/media + components
-          https://github.com/twobin/react-lazyload
-      */}
-      <Grid>
-        {[...Array(50).keys()].map(i => (
-          <LazyImage
-            key={i}
-            src={`https://picsum.photos/1000/1000?random=${i}`}
-            alt={`Random image ${i}`}
-          />
-        ))}
-      </Grid>
 
       <Suspense>
         <TabGroup data={data} />
