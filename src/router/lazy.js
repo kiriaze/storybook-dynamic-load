@@ -1,5 +1,5 @@
 // wrap views/pages in lazyload
-import React from 'react'
+// import React from 'react'
 import Loader from '../components/ui/Loader/Loader'
 import Loadable from 'react-loadable'
 

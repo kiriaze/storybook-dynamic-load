@@ -1,10 +1,12 @@
-import React, { Suspense, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch }  from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router }  from 'react-router-dom';
 
 import Loadable from 'react-loadable'
 import Loader from './components/ui/Loader/Loader'
 
 import Routes from './router/router'
+
+import './App.css'
 
 const Header = Loadable({
   loader: () =>

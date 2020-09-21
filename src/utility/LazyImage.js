@@ -30,6 +30,24 @@ const Placeholder = styled.div`
   animation: ${loadingAnimation} 1s infinite;
 `;
 
+// skeleton_loading
+// 0% {
+//   background-position: 200% 0;
+// }
+// 100% {
+//   background-position: -200% 0;
+// }
+
+// --accents-1: #fafafa;
+// --accents-2: #eaeaea;
+
+// display: block;
+// width: 100%;
+// border-radius: 5px;
+// background-image: linear-gradient(270deg,var(--accents-1),var(--accents-2),var(--accents-2),var(--accents-1));
+// background-size: 400% 100%;
+// animation: skeleton_loading 8s ease-in-out infinite;
+
 const StyledImage = styled.img`
   position: absolute;
   left: 0;
@@ -37,7 +55,7 @@ const StyledImage = styled.img`
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity .75s ease;
+  transition: opacity 0.75s ease;
   backface-visibility: hidden;
   &.loaded {
     opacity: 1;
@@ -49,8 +67,8 @@ const LazyImage = ({ src, alt }) => {
 
   const removePlaceholder = (e) => {
     refPlaceholder.current.remove();
-    
-    e.target.classList.add('loaded')
+
+    e.target.classList.add('loaded');
   };
 
   return (
@@ -70,7 +88,7 @@ const LazyImage = ({ src, alt }) => {
 
 LazyImage.propTypes = {
   src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired
+  alt: PropTypes.string.isRequired,
 };
 
 export default LazyImage;

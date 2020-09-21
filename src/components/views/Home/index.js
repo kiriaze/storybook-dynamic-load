@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react'
-import styled from 'styled-components'
 import Loadable from 'react-loadable'
 
 import Loader from '../../ui/Loader/Loader'
@@ -7,7 +6,7 @@ import Loader from '../../ui/Loader/Loader'
 const TabGroup = Loadable({
   loader: () =>
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve(import('../../ui/Tabs/Tabs')), 3000);
+      setTimeout(() => resolve(import('../../ui/Tabs')), 3000);
     }),
   loading: Loader,
   render: (module, props) => {
@@ -19,7 +18,7 @@ const TabGroup = Loadable({
 const Pagination = Loadable({
   loader: () =>
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve(import('../../ui/Pagination/Pagination')), 4000);
+      setTimeout(() => resolve(import('../../ui/Pagination')), 4000);
     }),
   loading: Loader,
   render: (module, props) => {
@@ -31,7 +30,7 @@ const Pagination = Loadable({
 const DataBind = Loadable({
   loader: () =>
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve(import('../../ui/Example/Example')), 2000);
+      setTimeout(() => resolve(import('../../ui/Example')), 2000);
     }),
   loading: Loader,
   render: (module, props) => {
@@ -64,13 +63,6 @@ const data = [
   }
 ]
 // 
-
-const Grid = styled.div`
-  display: grid;
-  padding: 16px;
-  grid-gap: 16px;
-  grid-template-columns: 1fr 1fr 1fr;
-`;
 
 const Home = () => {
   return (
