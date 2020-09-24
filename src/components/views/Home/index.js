@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react'
 import Loadable from 'react-loadable'
-
-import Loader from '../../ui/Loader/Loader'
+import Loader from '../../ui/Loader'
 
 const TabGroup = Loadable({
   loader: () =>
@@ -36,6 +35,18 @@ const DataBind = Loadable({
   render: (module, props) => {
     const { Example } = module;
     return <Example {...props} />;
+  },
+})
+
+const BookSearch = Loadable({
+  loader: () =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => resolve(import('../../ui/BookSearch')), 1000);
+    }),
+  loading: Loader,
+  render: (module) => {
+    const { BookSearch } = module;
+    return <BookSearch />;
   },
 })
 
@@ -79,6 +90,8 @@ const Home = () => {
       <Suspense>
         <Pagination data={data} />
       </Suspense>
+
+      <BookSearch />
 
     </div>
   )
